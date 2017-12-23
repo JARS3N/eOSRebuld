@@ -1,4 +1,11 @@
 #!/bin/bash
+# wget the file
+# chmod 755 sudoin
+# ./sudoin
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+sudo apt-get  --yes --force-yesupdate 
+sudo apt-get  --yes --force-yesinstall google-chrome-stable 
 sudo apt-get --yes --force-yes dist-upgrade
 sudo apt-get --yes --force-yes upgrade
 sudo apt-get --yes --force-yes update
@@ -26,6 +33,7 @@ wget https://s3.amazonaws.com/rstudio-dailybuilds/rstudio-1.0.124-amd64.deb
 sudo dpkg -i rstudio-1.0.124-amd64.deb
 sudo apt-add-repository multiverse && sudo apt-get update
 sudo apt-get --yes --force-yes autoremove
- sudo apt-get libjpeg62 libstreamer0.10-0 install flashplugin-installer 
-sudo apt-get  --yes --force-yes install libgstreamer-plugins-base0.10-0 libjpeg62  libgstreamer0.10-0
+sudo apt-get  --yes --force-yes install libjpeg62 
+sudo apt-get  --yes --force-yes install libstreamer0.10-0 
+sudo apt-get  --yes --force-yes install libgstreamer-plugins-base0.10-0  
 sudo apt-get  --yes --force-yes install flashplugin-installer 
