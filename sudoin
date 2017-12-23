@@ -1,8 +1,26 @@
-sudo apt-get upgrade
-sudo_apt-get update
-sudo add-apt-repository ppa:mozillateam/firefox-next
+sudo apt-get --yes --force-yes dist-upgrade
+sudo apt-get --yes --force-yes upgrade
+sudo apt-get --yes --force-yes update
+sudo apt-get --yes --force-yes install gdebi
+sudo apt-get --yes --force-yes install r-base r-base-dev 
+sudo add-apt-repository  --yes ppa:mozillateam/firefox-next
 sudo apt update && sudo apt upgrade
-sudo apt install firefox
-sudo add-apt-repository ppa:mozillateam/firefox-next
-sudo apt update && sudo apt upgrade
-sudo apt install firefox
+sudo apt-get  --yes --force-yes install vlc
+sudo apt-get --yes --force-yes install conky-all
+sudo apt-get --yes --force-yes install software-properties-common
+sudo apt-get --yes --force-yes install apt-file
+sudo apt-file --N update
+sudo add-apt-repository --yes ppa:philip.scott/elementary-tweaks
+sudo apt-get --yes --force-yes update
+sudo apt-get --yes --force-yes install elementary-tweaks
+sudo apt-get --yes --force-yes install rar unrar cabextract lzip lunzip arj unace p7zip-rar p7zip
+sudo apt-get --yes --force-yes install ubuntu-restricted-extras
+sudo apt  --yes --force-yes install steam
+sudo apt  --yes --force-yes install openssh-server
+sudo apt  --yes --force-yes install libavcodec-extra ffmpeg
+sudo apt  --yes --force-yes install ardour
+sudo apt-get  --yes --force-yes install libavcodec-extra
+sudo apt-get  --yes --force-yes install libdvd-pkg
+wget https://s3.amazonaws.com/rstudio-dailybuilds/rstudio-1.0.124-amd64.deb
+sudo dpkg -i rstudio-1.0.124-amd64.deb
+sudo apt-get --yes --force-yes autoremove
