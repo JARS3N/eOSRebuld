@@ -23,4 +23,8 @@ sudo apt-get  --yes --force-yes install libavcodec-extra
 sudo apt-get  --yes --force-yes install libdvd-pkg
 wget https://s3.amazonaws.com/rstudio-dailybuilds/rstudio-1.0.124-amd64.deb
 sudo dpkg -i rstudio-1.0.124-amd64.deb
+sudo apt-add-repository multiverse && sudo apt-get update
 sudo apt-get --yes --force-yes autoremove
+ sudo apt-get libjpeg62 libstreamer0.10-0 install flashplugin-installer 
+sudo apt-get  --yes --force-yes install libgstreamer-plugins-base0.10-0 libjpeg62  libgstreamer0.10-0
+sudo apt-get  --yes --force-yes install flashplugin-installer 
