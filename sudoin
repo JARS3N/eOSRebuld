@@ -29,11 +29,22 @@ sudo apt  --yes --force-yes install libavcodec-extra ffmpeg
 sudo apt  --yes --force-yes install ardour
 sudo apt-get  --yes --force-yes install libavcodec-extra
 sudo apt-get  --yes --force-yes install libdvd-pkg
-wget https://s3.amazonaws.com/rstudio-dailybuilds/rstudio-1.0.124-amd64.deb
-sudo dpkg -i rstudio-1.0.124-amd64.deb
 sudo apt-add-repository multiverse && sudo apt-get update
-sudo apt-get --yes --force-yes autoremove
 sudo apt-get  --yes --force-yes install libjpeg62 
 sudo apt-get  --yes --force-yes install libstreamer0.10-0 
 sudo apt-get  --yes --force-yes install libgstreamer-plugins-base0.10-0  
+wget https://s3.amazonaws.com/rstudio-dailybuilds/rstudio-1.1.383-amd64.deb
+sudo dpkg -i rstudio-1.1.383-amd64.deb
 sudo apt-get  --yes --force-yes install flashplugin-installer 
+sudo apt-get --yes --force-yes autoremove
+# packages etc
+sudo apt-get --yes --force-yes install libcurl14-gnutls-dev
+sudo apt-get  --yes --force-yes install libssl-dev
+#sudo apt-get  --yes --force-yes install openssl-devel
+sudo apt-get  --yes --force-yes install openssl
+sudo apt-get  --yes --force-yes install libssh2-1-dev 
+sudo apt-get --yes --force-yes install libxml2-dev 
+sudo su - -c "R -e \"install.packages('devtools', repos = 'http://cran.rstudio.com/')\""
+sudo su - -c "R -e \"install.packages('tidyverse', repos = 'http://cran.rstudio.com/')\""
+sudo su - -c "R -e \"install.packages('shiny', repos = 'http://cran.rstudio.com/')\""
+
