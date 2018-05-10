@@ -1,5 +1,5 @@
 #!/bin/bash
-# wget the file
+# wget https://github.com/JARS3N/eOSRebuld/blob/master/sudoin
 # chmod 755 sudoin
 # ./sudoin
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
