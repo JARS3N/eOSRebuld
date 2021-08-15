@@ -2,40 +2,44 @@
 # wget https://raw.githubusercontent.com/JARS3N/eOSRebuld/master/sudoin
 # chmod 755 sudoin
 # ./sudoin
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
-sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-sudo apt-get install software-properties-common
-sudo apt-get  --yes --force-yes update 
-sudo apt-get  --yes --force-yes install google-chrome-stable 
+sudo apt-get --yes --force-yes install emacs
+sudo apt-get --yes --force-yes install sbcl
+sudo apt-get --yes --force-yes install r-base r-base-dev 
+sudo apt-get --yes --force-yes install rar unrar cabextract lzip lunzip arj unace p7zip-rar p7zip
+# # 2 below only needed because of chrome
+# wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+# sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+# sudo apt-get  --yes --force-yes update 
+# sudo apt-get  --yes --force-yes install google-chrome-stable 
 sudo apt-get --yes --force-yes dist-upgrade
 sudo apt-get --yes --force-yes upgrade
 sudo apt-get --yes --force-yes update
 sudo apt-get --yes --force-yes install gdebi
-sudo apt-get --yes --force-yes install r-base r-base-dev 
-sudo add-apt-repository  --yes ppa:mozillateam/firefox-next
+# sudo add-apt-repository  --yes ppa:mozillateam/firefox-next
 sudo apt update && sudo apt upgrade
 sudo apt-get  --yes --force-yes install vlc
-sudo apt-get --yes --force-yes install conky-all
+#sudo apt-get --yes --force-yes install conky-all
 sudo apt-get --yes --force-yes install software-properties-common
-sudo apt-get --yes --force-yes install apt-file
-sudo apt-file --N update
-sudo add-apt-repository --yes ppa:philip.scott/elementary-tweaks
-sudo apt-get --yes --force-yes update
-sudo apt-get --yes --force-yes install elementary-tweaks
-sudo apt-get --yes --force-yes install rar unrar cabextract lzip lunzip arj unace p7zip-rar p7zip
+# sudo apt-get --yes --force-yes install apt-file
+# sudo apt-file --N update
+# sudo add-apt-repository --yes ppa:philip.scott/elementary-tweaks
+# sudo apt-get --yes --force-yes update
+# sudo apt-get --yes --force-yes install elementary-tweaks
+
 sudo apt-get --yes --force-yes install ubuntu-restricted-extras
 sudo apt  --yes --force-yes install steam
 sudo apt  --yes --force-yes install openssh-server
 sudo apt  --yes --force-yes install libavcodec-extra ffmpeg
-sudo apt  --yes --force-yes install ardour
+# sudo apt  --yes --force-yes install ardour
 sudo apt-get  --yes --force-yes install libavcodec-extra
 sudo apt-get  --yes --force-yes install libdvd-pkg
-sudo apt-add-repository multiverse && sudo apt-get update
+# sudo apt-add-repository multiverse && sudo apt-get update
 sudo apt-get  --yes --force-yes install libjpeg62 
 sudo apt-get  --yes --force-yes install libstreamer0.10-0 
 sudo apt-get  --yes --force-yes install libgstreamer-plugins-base0.10-0  
-wget https://s3.amazonaws.com/rstudio-dailybuilds/rstudio-1.1.383-amd64.deb
-sudo dpkg -i rstudio-1.1.383-amd64.deb
+wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1717-amd64.deb
+sudo apt-get --yes --force-yes install libclang-dev libpq5
+sudo dpkg -i rstudio-1.4.1717-amd64.deb
 sudo apt-get  --yes --force-yes install flashplugin-installer 
 sudo apt-get --yes --force-yes autoremove
 # packages etc
@@ -45,7 +49,7 @@ sudo apt-get  --yes --force-yes install libssl-dev
 sudo apt-get  --yes --force-yes install openssl
 sudo apt-get  --yes --force-yes install libssh2-1-dev 
 sudo apt-get --yes --force-yes install libxml2-dev 
-sudo apt-get --yes --force-yes install libmariadb-client-lgpl-dev
+sudo apt-get --yes --force-yes install libmariadb-client-lgpl-dev #wasn't locating
 sudo su - -c "R -e \"install.packages('devtools', repos = 'http://cran.rstudio.com/')\""
 sudo su - -c "R -e \"install.packages('tidyverse', repos = 'http://cran.rstudio.com/')\""
 sudo su - -c "R -e \"install.packages('shiny', repos = 'http://cran.rstudio.com/')\""
