@@ -58,4 +58,5 @@ sudo su - -c "R -e \"install.packages('shiny', repos = 'http://cran.rstudio.com/
 curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt-get update && sudo apt-get install spotify-client
-
+wget https://github.com/ramboxapp/community-edition/releases/download/0.7.9/Rambox-0.7.9-linux-amd64.deb
+sudo dpkg -i Rambox-0.7.9-linux-amd64.deb
