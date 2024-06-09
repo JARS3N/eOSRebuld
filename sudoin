@@ -2,64 +2,78 @@
 # wget https://raw.githubusercontent.com/JARS3N/eOSRebuld/master/sudoin
 # chmod 755 sudoin
 # ./sudoin
-sudo apt-get --yes --force-yes install emacs
-sudo apt-get --yes --force-yes install sbcl
-sudo apt-get --yes --force-yes install r-base r-base-dev 
-sudo apt-get --yes --force-yes install rar unrar cabextract lzip lunzip arj unace p7zip-rar p7zip
-# # 2 below only needed because of chrome
-# wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
-# sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-# sudo apt-get  --yes --force-yes update 
-# sudo apt-get  --yes --force-yes install google-chrome-stable 
-sudo apt-get --yes --force-yes dist-upgrade
-sudo apt-get --yes --force-yes upgrade
-sudo apt-get --yes --force-yes update
-sudo apt-get --yes --force-yes install gdebi
-# sudo add-apt-repository  --yes ppa:mozillateam/firefox-next
-sudo apt update && sudo apt upgrade
-sudo apt-get  --yes --force-yes install vlc
-#sudo apt-get --yes --force-yes install conky-all
-sudo apt-get --yes --force-yes install software-properties-common
-# sudo apt-get --yes --force-yes install apt-file
-# sudo apt-file --N update
-# sudo add-apt-repository --yes ppa:philip.scott/elementary-tweaks
-# sudo apt-get --yes --force-yes update
-# sudo apt-get --yes --force-yes install elementary-tweaks
+#!/bin/bash
 
-sudo apt-get --yes --force-yes install ubuntu-restricted-extras
-sudo apt  --yes --force-yes install steam
-sudo apt  --yes --force-yes install openssh-server
-sudo apt  --yes --force-yes install libavcodec-extra ffmpeg
-# sudo apt  --yes --force-yes install ardour
-sudo apt-get  --yes --force-yes install libavcodec-extra
-sudo apt-get  --yes --force-yes install libdvd-pkg
-# sudo apt-add-repository multiverse && sudo apt-get update
-sudo apt-get  --yes --force-yes install libjpeg62 
-sudo apt-get  --yes --force-yes install libstreamer0.10-0 
-sudo apt-get  --yes --force-yes install libgstreamer-plugins-base0.10-0  
-wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1717-amd64.deb
-sudo apt-get --yes --force-yes install libclang-dev libpq5
-sudo dpkg -i rstudio-1.4.1717-amd64.deb
-sudo apt-get  --yes --force-yes install flashplugin-installer 
-sudo apt-get --yes --force-yes autoremove
-# packages etc
-sudo apt-get --yes --force-yes install libcurl14-gnutls-dev
-sudo apt-get  --yes --force-yes install libssl-dev
-#sudo apt-get  --yes --force-yes install openssl-devel
-sudo apt-get  --yes --force-yes install openssl
-sudo apt-get  --yes --force-yes install libssh2-1-dev 
-sudo apt-get --yes --force-yes install libxml2-dev 
-sudo apt-get --yes --force-yes install libmariadb-client-lgpl-dev #wasn't locating
+# Define the directory containing the optimization scripts
+OPTIMIZE_DIR=~/local-optimize
+
+# Function to run an optimization script if it exists
+run_optimization_script() {
+    local script_name=$1
+    if [ -f "$OPTIMIZE_DIR/$script_name" ]; then
+        echo "Running optimization script: $script_name"
+        chmod +x "$OPTIMIZE_DIR/$script_name"
+        "$OPTIMIZE_DIR/$script_name"
+    else
+        echo "Optimization script not found: $script_name"
+    fi
+}
+
+# Update and upgrade system
+sudo apt-get update && sudo apt-get --yes upgrade
+sudo apt-get --yes dist-upgrade
+
+# Run optimization scripts
+run_optimization_script "compile_gcc.sh"
+run_optimization_script "compile_make.sh"
+run_optimization_script "compile_python3.sh"
+run_optimization_script "compile_node.sh"
+run_optimization_script "compile_ffmpeg.sh"
+run_optimization_script "compile_nginx.sh"
+run_optimization_script "compile_r.sh"
+run_optimization_script "compile_emacs.sh"
+run_optimization_script "compile_sbcl.sh"
+run_optimization_script "compile_firefox.sh"
+
+# Install essential packages
+sudo apt-get --yes install emacs sbcl r-base r-base-dev
+sudo apt-get --yes install rar unrar cabextract lzip lunzip arj unace p7zip-rar p7zip
+sudo apt-get --yes install gdebi software-properties-common ubuntu-restricted-extras
+sudo apt-get --yes install steam openssh-server libavcodec-extra ffmpeg libdvd-pkg
+sudo apt-get --yes install libjpeg62 libstreamer0.10-0 libgstreamer-plugins-base0.10-0
+sudo apt-get --yes install libclang-dev libpq5 flashplugin-installer
+sudo apt-get --yes install libcurl14-gnutls-dev libssl-dev openssl libssh2-1-dev libxml2-dev libmariadb-client-lgpl-dev
+
+# Install RStudio
+RSTUDIO_DEB=rstudio-1.4.1717-amd64.deb
+wget https://download1.rstudio.org/desktop/bionic/amd64/$RSTUDIO_DEB
+sudo dpkg -i $RSTUDIO_DEB
+rm $RSTUDIO_DEB
+
+# Install Spotify
+curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt-get update && sudo apt-get --yes install spotify-client
+
+# Install Rambox
+RAMBOX_DEB=Rambox-0.7.9-linux-amd64.deb
+wget https://github.com/ramboxapp/community-edition/releases/download/0.7.9/$RAMBOX_DEB
+sudo dpkg -i $RAMBOX_DEB
+rm $RAMBOX_DEB
+
+# Install Stacer
+sudo add-apt-repository --yes ppa:oguzhaninan/stacer
+sudo apt-get update
+sudo apt-get --yes install stacer
+
+# Install R packages
 sudo su - -c "R -e \"install.packages('devtools', repos = 'http://cran.rstudio.com/')\""
 sudo su - -c "R -e \"install.packages('tidyverse', repos = 'http://cran.rstudio.com/')\""
 sudo su - -c "R -e \"install.packages('shiny', repos = 'http://cran.rstudio.com/')\""
-#sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
-#echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
-curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
-echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt-get update && sudo apt-get install spotify-client
-wget https://github.com/ramboxapp/community-edition/releases/download/0.7.9/Rambox-0.7.9-linux-amd64.deb
-sudo dpkg -i Rambox-0.7.9-linux-amd64.deb
-sudo add-apt-repository ppa:oguzhaninan/stacer
-sudo apt-get update
-sudo apt-get install stacer
+
+# Autoremove unnecessary packages
+sudo apt-get --yes autoremove
+
+# Final update and upgrade
+sudo apt-get update && sudo apt-get --yes upgrade
+
