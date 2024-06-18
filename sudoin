@@ -43,7 +43,10 @@ sudo apt-get --yes install steam openssh-server libavcodec-extra ffmpeg libdvd-p
 sudo apt-get --yes install libjpeg62 libstreamer0.10-0 libgstreamer-plugins-base0.10-0
 sudo apt-get --yes install libclang-dev libpq5 flashplugin-installer
 sudo apt-get --yes install libcurl14-gnutls-dev libssl-dev openssl libssh2-1-dev libxml2-dev libmariadb-client-lgpl-dev
-sudo apt-get --yes install ubuntu-drivers-common
+sudo apt-get --yes install ubuntu-drivers-common software-properties-gtk software-properties-common
+# https://gist.github.com/jansanchez/ce5b0ca1c5e538f4b266
+# https://gist.github.com/Jiab77/d3344422ee6d334f284425b558dc572c
+
 # Install RStudio
 RSTUDIO_DEB=rstudio-1.4.1717-amd64.deb
 wget https://download1.rstudio.org/desktop/bionic/amd64/$RSTUDIO_DEB
