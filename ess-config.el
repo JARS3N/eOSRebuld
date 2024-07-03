@@ -1,6 +1,4 @@
-;; R related portion of emacs config
-
-;;; START R
+;;; ess-config.el --- Configuration for ESS and R
 
 ;; ESS for R
 (use-package ess
@@ -89,4 +87,12 @@
   (define-key ess-r-mode-map (kbd "<C-return>") 'ess-eval-region-or-line-and-step)
   (define-key ess-r-mode-map (kbd "C-S-m") 'ess-insert-assign))
 
-;;; END R
+;;; Customize window splitting for R mode
+(add-hook 'ess-mode-hook
+          (lambda ()
+            (setq split-width-threshold 0)
+            (setq split-height-threshold nil)))
+
+(provide 'ess-config)
+
+;;; ess-config.el ends here
