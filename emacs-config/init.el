@@ -1,5 +1,4 @@
 ;;; Emacs Configuration
-;;(load (expand-file-name "accomplishments.el" user-emacs-directory))
 ;;;
 
 ;; Basic UI Tweaks
@@ -55,21 +54,10 @@
 (use-package magit
   :ensure t)
 
+ ;; Commenting
+  (global-set-key (kbd "C-c C-;") 'comment-region)
+  (global-set-key (kbd "C-c C-:") 'uncomment-region)
 
-;; Projectile Configuration
-;(use-package projectile
-;  :ensure t
-;  :config
-;  (projectile-mode +1)
-;  (setq projectile-switch-project-action 'projectile-dired)
-;  (setq projectile-completion-system 'ivy)
-;  ;; Prevent Projectile from changing windows
-;  (setq projectile-switch-project-action
-;        (lambda ()
-;          (dired (projectile-project-root))))
-;  (setq projectile-find-dir-includes-top-level t))
-
-;; END PROJECTILE
 
 ;; Hook to display plots in Emacs buffer
 (add-hook 'ess-post-run-hook 'display-ess-r-plot)
