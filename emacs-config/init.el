@@ -251,6 +251,7 @@
 (global-set-key (kbd "C-c C-:") 'uncomment-region)
 (global-set-key (kbd "C-c C-k") 'ess-rmarkdown)
 (global-set-key (kbd "C-c d") 'my-org-cycle-date-format)
+(global-set-key (kbd "C-c o") 'browse-url-at-point) ;; url link direct
 
 ;; Performance Tweaks
 (setq gc-cons-threshold 100000000) ;; Increase garbage collection threshold
