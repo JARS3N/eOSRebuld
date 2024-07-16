@@ -178,7 +178,18 @@
   (elpy-enable))
 
 ;; ESS for R
-(add-hook 'ess-post-run-hook 'display-ess-r-plot)
+(use-package ess
+  :ensure t
+  :mode (("\\.R\\'" . R-mode)
+         ("\\.r\\'" . R-mode))
+  :init
+  (require 'ess-site)
+  ;; Customize ESS startup behavior
+  (setq ess-ask-for-ess-directory nil) ;; Don't prompt for directory
+  (setq ess-use-flymake nil) ;; Disable flymake to avoid issues
+  (setq ess-auto-width 'window) ;; Adjust width to window
+  (setq ess-tab-complete-in-script t) ;; Enable tab completion in scripts
+  (setq inferior-R-program-name "Rterm.exe")
 
 
 ;;Racket
@@ -252,6 +263,10 @@
 (global-set-key (kbd "C-c C-k") 'ess-rmarkdown)
 (global-set-key (kbd "C-c d") 'my-org-cycle-date-format)
 (global-set-key (kbd "C-c o") 'browse-url-at-point) ;; url link direct
+(global-set-key (kbd "C-c <left>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-c <right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-c <down>") 'shrink-window)
+(global-set-key (kbd "C-c <up>") 'enlarge-window)
 
 ;; Performance Tweaks
 (setq gc-cons-threshold 100000000) ;; Increase garbage collection threshold
@@ -304,4 +319,18 @@
   (let ((output-buffer "*LLAMA Query Output*"))
     (with-output-to-temp-buffer output-buffer
       (shell-command (format "python c:users/arsenaul/PROJ/LLM/llama.py %s" prompt) output-buffer))))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(geiser auto-package-update use-package ssh spacemacs-theme spacegray-theme sly slime rust-mode reverse-theme rainbow-delimiters racket-mode quarto-mode python-mode projectile poly-org poly-R pdf-tools org-tree-slide org-roam org-bullets nord-theme monokai-theme modus-themes mini-frame mermaid-mode mastodon magit jupyter highlight-indent-guides gruvbox-theme gandalf-theme forest-blue-theme flyspell-correct ess-view-data ess-view ess-smart-underscore ess-smart-equals ess-r-insert-obj ess-R-data-view emacsql-sqlite-module elpy doom-themes doom-modeline doom cyberpunk-theme cyberpunk-2019-theme counsel company-lua command-log-mode brutalist-theme auto-complete ahungry-theme afternoon-theme)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 
