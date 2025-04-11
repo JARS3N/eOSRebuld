@@ -1,0 +1,92 @@
+===============================================================================
+  StevenBlack/hosts Installation and Usage Instructions
+  For elementaryOS (or similar Debian/Ubuntu-based Linux distributions)
+===============================================================================
+
+-----------------------------
+1. BACK UP YOUR EXISTING HOSTS FILE
+-----------------------------
+
+It is good practice to back up your existing hosts file before making any changes.
+Run:
+  sudo cp /etc/hosts /etc/hosts.backup
+
+If you ever need to revert:
+  sudo cp /etc/hosts.backup /etc/hosts
+
+-----------------------------
+2. INSTALL GIT AND PYTHON 3 (IF NEEDED)
+-----------------------------
+
+If Git and Python 3 are not installed, install them using the following commands:
+  sudo apt update
+  sudo apt install git python3
+
+-----------------------------
+3. CLONE THE REPOSITORY
+-----------------------------
+
+Clone the StevenBlack/hosts repository to your current working directory:
+  git clone https://github.com/StevenBlack/hosts.git
+
+A new folder named "hosts" will appear in your current directory.
+
+-----------------------------
+4. RUN THE UPDATE SCRIPT
+-----------------------------
+
+Move into the repository folder:
+  cd hosts
+
+Then run the update script:
+  python3 updateHostsFile.py
+
+By default, this will:
+1. Merge several reputable hosts files into one consolidated file.
+2. Prompt you for your sudo password.
+3. Write the new consolidated hosts file to /etc/hosts.
+
+-----------------------------
+5. OPTIONAL: ADD EXTENSIONS
+-----------------------------
+
+StevenBlack/hosts includes themed lists to block additional categories like gambling, adult, fakenews, etc.
+
+Examples:
+  python3 updateHostsFile.py --adult --gambling
+  python3 updateHostsFile.py --adult --gambling --fakenews
+
+For a full list of available flags, see the project's README on GitHub.
+
+-----------------------------
+6. VERIFY THE NEW HOSTS FILE
+-----------------------------
+
+After running the script, verify that /etc/hosts has been updated:
+  cat /etc/hosts
+
+You should see lines referencing the domains blocked by the script.
+
+-----------------------------
+7. AUTOMATE UPDATES (OPTIONAL)
+-----------------------------
+
+To keep the hosts file updated, you can set up a cron job. For example:
+1. Edit your crontab:
+     crontab -e
+
+2. Add a line to schedule the update script to run weekly (e.g., every Sunday at midnight):
+     0 0 * * SUN /usr/bin/python3 /path/to/hosts/updateHostsFile.py
+
+Replace "/path/to/hosts" with the actual path to the "hosts" folder you cloned.
+
+===============================================================================
+  RESTORING YOUR ORIGINAL HOSTS FILE
+===============================================================================
+
+If anything goes wrong and you want to restore your original /etc/hosts:
+  sudo cp /etc/hosts.backup /etc/hosts
+
+===============================================================================
+  END
+===============================================================================
